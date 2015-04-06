@@ -4,7 +4,7 @@ var chiffer = {
             scout: {
                 type: function () {
                     "use strict";
-                    return chiffer.chiffers.five;
+                return chiffer.chiffers.five;
                 },
                 name: {
                     sv: "SCOUTscout",
@@ -412,7 +412,7 @@ var chiffer = {
     encryptToMatris: function (text, alphabet, imageCrypto, key) {
         "use strict";
         var i,
-        test;
+            test;
         for (i in alphabet) {
             if (alphabet.hasOwnProperty(i)) {
                 test = alphabet[key[i]];

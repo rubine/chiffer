@@ -1,0 +1,17 @@
+{
+	"folders":
+	[
+		{
+			"path": "/C/Users/robin/Scouter/Scouterna/Ciffer"
+		}
+	],
+     "settings":
+    {
+        "SublimeLinter":
+        {
+
+                "working_directory": "C:\\Users\\robin\\Scouter\\Scouterna\\Ciffer"
+
+        }
+    }
+}

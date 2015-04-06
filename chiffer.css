@@ -1,0 +1,32 @@
+div ol li 
+{
+    font-size: 24px;
+    margin-bottom: 24px;
+}
+li div
+{
+    background: url('hars.png');
+    width: 20px;
+    height: 20px;   
+    display: inline-block;
+    margin-right: 2px;
+    background-position: -560px  0;
+}
+.key
+{
+    float: right;
+}
+.key .start
+{
+    font-family: serif;
+}
+
+    @font-face {
+    font-family: icomoon;
+    src: url('hars.ttf');
+}
+.lumberyard
+{
+font-family: icomoon;
+font-size: 27px;
+}

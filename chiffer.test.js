@@ -1,6 +1,6 @@
 var chiffer = {
     chiffers: {
-        methodes: { 
+        methodes: {
             scout: {
                 type: function () {
                     "use strict";
@@ -259,9 +259,9 @@ var chiffer = {
             text = $(input).val(),
             type = $(input).next().val(),
             sorte = $(input).next().next().val(),
-            offset =  $(input).next().next().next().val(),
+            offset = $(input).next().next().next().val(),
             theChiffer = chiffer.chiffers.methodes[type].type(),
-            methode = $.extend([],chiffer.chiffers.methodes[type].methode()),
+            methode = $.extend([], chiffer.chiffers.methodes[type].methode()),
             key,
             theKey,
             add,
@@ -317,7 +317,7 @@ var chiffer = {
             if (offset !== undefined && offset !== null) {
                 add = parseInt(offset, false);
             } else if (sorte !== undefined && sorte !== null) {
-            //console.log(theChiffer.chifferMethod[sorte].serie);
+                //console.log(theChiffer.chifferMethod[sorte].serie);
                 add = parseInt(theChiffer.chifferMethod[sorte].serie, false);
             } else {
                 add = 0;
@@ -412,16 +412,16 @@ var chiffer = {
     encryptToMatris: function (text, alphabet, imageCrypto, key) {
         "use strict";
         var i,
-            test;
+        test;
         for (i in alphabet) {
             if (alphabet.hasOwnProperty(i)) {
-                test  = alphabet[key[i]];
+                test = alphabet[key[i]];
                 text = text.replace(alphabet[i], "{" + alphabet[i] + "}", "gi");
             }
         }
         for (i in alphabet) {
             if (alphabet.hasOwnProperty(i)) {
-                test  = alphabet[key[i]];
+                test = alphabet[key[i]];
                 text = text.replace("{" + alphabet[i] + "}", "{" + key[i] + "}", "gi");
             }
         }

@@ -39,119 +39,62 @@
 
 	});
 </script>
+
+
+
+
 <link rel="stylesheet" href="chiffer.css">
+<link rel="stylesheet" href="print-chiffer.css">
 </header>
 <body>
-	
-	<form action="">
-		
+	    <h1>
+        Chiffer
+    </h1>
+    	<form action="" class="main-key hide-when-print">
 			<label>Nyckel:<input class="key-input" type=""></input></label>
 	</form>
-	<ol>
-		<li>
-			<input class="chiffer-input" data-input="1" type=""></input>
-			<select name="Ciffer" data-chiffer="1" class="chiffer" id="chiffer1">
-				
-			</select>
-			<select name="tre" class="methode" data-methode="1">
-				
-			</select>
-			<input class="offset">
-		</li>
-		<li>
-			<input class="chiffer-input" data-input="2" type=""></input>
-			<select name="Ciffer" data-chiffer="2" class="chiffer" id="chiffer2">
-				
-			</select>
-			<select name="tre" class="methode" data-methode="2">
-				
-			</select>
-			<input class="offset">
-		</li>
-		<li>
-			<input class="chiffer-input" data-input="3" type=""></input>
-			<select name="Ciffer" data-chiffer="3" class="chiffer" id="chiffer3">
-				
-			</select>
-			<select name="tre" class="methode" data-methode="3">
-				
-			</select>
-			<input class="offset">
-		</li>
-		<li>
-			<input class="chiffer-input" data-input="4" type=""></input>
-			<select name="Ciffer" data-chiffer="4" class="chiffer" id="chiffer4">
-				
-			</select>
-			<select name="tre" class="methode" data-methode="4">
-				
-			</select>
-			<input class="offset">
-		</li>
-		<li>
-			<input class="chiffer-input" data-input="5" type=""></input>
-			<select name="Ciffer" data-chiffer="5" class="chiffer" id="chiffer5">
-				
-			</select>
-			<select name="tre" class="methode" data-methode="5">
-				
-			</select>
-			<input class="offset">
-		</li>
-		<li>
-			<input class="chiffer-input" data-input="6" type=""></input>
-			<select name="Ciffer" data-chiffer="6" class="chiffer" id="chiffer6">
-			</select>
-			<select name="tre" class="methode" data-methode="6">
-			</select>
-			<input class="offset">
-		</li>
-		<li>
-			<input class="chiffer-input" data-input="7" type=""></input>
-			<select name="Ciffer" data-chiffer="7" class="chiffer" id="chiffer7">
-			</select>
-			<select name="tre" class="methode" data-methode="7">
-			</select>
-			<input class="offset">
-		</li>
-		<li>
-			<input class="chiffer-input" data-input="8" type=""></input>
-			<select name="Ciffer" data-chiffer="8" class="chiffer" id="chiffer8">
-			</select>
-			<select name="tre" class="methode" data-methode="8">
-			</select>
-			<input class="offset">
-		</li>
-		<li>
-			<input class="chiffer-input" data-input="9" type=""></input>
-			<select name="Ciffer" data-chiffer="9" class="chiffer" id="chiffer9">
-			</select>
-			<select name="tre" class="methode" data-methode="9">
-			</select>
-			<input class="offset">
-		</li>
-		<li>
-			<input class="chiffer-input" data-input="10" type=""></input>
-			<select name="Ciffer" data-chiffer="10" class="chiffer" id="chiffer10">
-			</select>
-			<select name="tre" class="methode" data-methode="10">
-			</select>
-			<input class="offset">
-		</li>
-	</ol>
+	<script type="text/template" class="template">
+	<ol class="hide-when-print">
+            <% _.times( 10, function( index ){ %>
+			<li>
+				<input class="chiffer-input" data-input="<%- (index + 1) %>" type=""></input>
+				<select name="Ciffer" data-chiffer="<%- (index + 1) %>" class="chiffer" id="chiffer<%- (index + 1) %>">
+					
+				</select>
+				<select name="tre" class="methode" data-methode="<%- (index + 1) %>">
+					
+				</select>
+				<input class="offset">
+			</li>
+            <% }); %>
+		<ol>
+
 	<div>
 		<ol>
-			<li id=""><span data-output="1"></span><span class="key" data-key="1"></span></li>
-			<li id=""><span data-output="2"></span><span class="key" data-key="2"></span></li>
-			<li id=""><span data-output="3"></span><span class="key" data-key="3"></span></li>
-			<li id=""><span data-output="4"></span><span class="key" data-key="4"></span></li>
-			<li id=""><span data-output="5"></span><span class="key" data-key="5"></span></li>
-			<li id=""><span data-output="6"></span><span class="key" data-key="6"></span></li>
-			<li id=""><span data-output="7"></span><span class="key" data-key="7"></span></li>
-			<li id=""><span data-output="8"></span><span class="key" data-key="8"></span></li>
-			<li id=""><span data-output="9"></span><span class="key" data-key="9"></span></li>
-			<li id=""><span data-output="10"></span><span class="key" data-key="10"></span></li>
+            <% _.times( 10, function( index ){ %>
+			<li id=""><span data-output="<%- (index + 1) %>"></span><span class="key" data-key="<%- (index + 1) %>"></span></li>
+            <% }); %>
 		</ol>
 	</div>
+</script>
+
+
+	<script src="underscore-min.js"></script>
+   <script type="text/javascript">
+
+        var template = _.template(
+            $( "script.template" ).html()
+        );
+
+        var templateData = { };
+
+        $( '.main-key' ).after(
+            template( templateData )
+        );
+
+
+    </script>
+
+
 </body>
 </html>

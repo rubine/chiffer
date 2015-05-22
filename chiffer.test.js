@@ -4,7 +4,7 @@ var chiffer = {
             scout: {
                 type: function () {
                     "use strict";
-                return chiffer.chiffers.five;
+                    return chiffer.chiffers.five;
                 },
                 name: {
                     sv: "SCOUTscout",
@@ -252,6 +252,32 @@ var chiffer = {
             });
         });
     },
+    getOffset: function (offset, sorte, theChiffer) {
+        var add;
+        if (!!offset) {
+            add = parseInt(offset, false);
+        } else if (sorte !== undefined && sorte !== null) {
+            //console.log(theChiffer.chifferMethod[sorte].serie);
+            add = parseInt(theChiffer.chifferMethod[sorte].serie, false);
+        } else {
+            add = 0;
+        }
+        return add;
+    },
+
+    matchAlfabeth: function (key, add) {
+        for (charactars in key) {
+            if (key.hasOwnProperty(charactars)) {
+                if (key[charactars] + add < key.length) {
+                    key[charactars] = key[charactars] + add;
+                } else {
+                    key[charactars] = key[charactars] - key.length + add;
+                }
+            }
+        }
+        return key;
+    },
+
     convert: function (input, to, keytext) {
         "use strict";
         var alphabet = jQuery.extend([], chiffer.chiffers.alphabet),
@@ -314,24 +340,11 @@ var chiffer = {
             // alphabet = chiffer.remove(theChiffer.remove, alphabet);
             //imageCrypto = chiffer.remove(theChiffer.remove, imageCrypto);
             key = $.extend([], theChiffer.chifferMethod.normal.serie);
-            if (offset !== undefined && offset !== null) {
-                add = parseInt(offset, false);
-            } else if (sorte !== undefined && sorte !== null) {
-                //console.log(theChiffer.chifferMethod[sorte].serie);
-                add = parseInt(theChiffer.chifferMethod[sorte].serie, false);
-            } else {
-                add = 0;
-            }
+            add = this.getOffset(offset, sorte, theChiffer);
+
             alphabetCrypto = $.extend([], chiffer.chiffers.alphabet);
-            for (charactars in key) {
-                if (key.hasOwnProperty(charactars)) {
-                    if (key[charactars] + add < key.length) {
-                        key[charactars] = key[charactars] + add;
-                    } else {
-                        key[charactars] = key[charactars] - key.length + add;
-                    }
-                }
-            }
+            key = this.matchAlfabeth(key, add);
+
             text = chiffer.encrypt(text, alphabet, alphabetCrypto, key, false, true);
             break;
         case "number":
@@ -339,22 +352,11 @@ var chiffer = {
             // alphabet = chiffer.remove(theChiffer.remove, alphabet);
             //imageCrypto = chiffer.remove(theChiffer.remove, imageCrypto);
             key = $.extend([], theChiffer.chifferMethod.normal.serie);
-            if (sorte !== undefined && sorte !== null && theChiffer.chifferMethod[sorte] !== undefined) {
-                //console.log(theChiffer.chifferMethod[sorte].serie);
-                add = parseInt(theChiffer.chifferMethod[sorte].serie);
-            } else {
-                add = 0;
-            }
+            add = this.getOffset(offset, sorte, theChiffer);
+
             numberCrypto = $.extend([], chiffer.chiffers.numberCrypto);
-            for (charactars in key) {
-                if (key.hasOwnProperty(charactars)) {
-                    if (key[charactars] + add < key.length) {
-                        key[charactars] = key[charactars] + add;
-                    } else {
-                        key[charactars] = key[charactars] - key.length + add;
-                    }
-                }
-            }
+            key = this.matchAlfabeth(key, add);
+
             text = chiffer.encrypt(text, alphabet, numberCrypto, key, false, true);
             break;
         case "other":

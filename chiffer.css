@@ -23,10 +23,14 @@ li div
 
     @font-face {
     font-family: icomoon;
-    src: url('hars.ttf');
+    src: url('hars/hars.ttf');
 }
 .lumberyard
 {
 font-family: icomoon;
 font-size: 27px;
+}
+.offset
+{
+    width: 30px;
 }

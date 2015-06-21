@@ -2,21 +2,21 @@ var chiffer = {
     chiffers: {
         methodes: {
             scout: {
-                type: function () {
+                type: function() {
                     "use strict";
-                return chiffer.chiffers.five;
+                    return chiffer.chiffers.five;
                 },
                 name: {
                     sv: "SCOUTscout",
                     en: ""
                 },
-                methode: function () {
+                methode: function() {
                     "use strict";
                     return chiffer.chiffers.scoutCrypto;
                 }
             },
             other: {
-                type: function () {
+                type: function() {
                     "use strict";
                     return chiffer.chiffers.other;
                 },
@@ -24,13 +24,13 @@ var chiffer = {
                     sv: "Andra",
                     en: ""
                 },
-                methode: function () {
+                methode: function() {
                     "use strict";
                     return chiffer.chiffers.alphabet;
                 }
             },
             lumberyard: {
-                type: function () {
+                type: function() {
                     "use strict";
                     return chiffer.chiffers.three;
                 },
@@ -38,13 +38,13 @@ var chiffer = {
                     sv: "Brädgård",
                     en: ""
                 },
-                methode: function () {
+                methode: function() {
                     "use strict";
                     return chiffer.chiffers.imageCrypto;
                 }
             },
             matrise: {
-                type: function () {
+                type: function() {
                     "use strict";
                     return chiffer.chiffers.five;
                 },
@@ -52,13 +52,13 @@ var chiffer = {
                     sv: "Matris",
                     en: ""
                 },
-                methode: function () {
+                methode: function() {
                     "use strict";
                     return chiffer.chiffers.matrisCrypto;
                 }
             },
             number: {
-                type: function () {
+                type: function() {
                     "use strict";
                     return chiffer.chiffers.alphaNumber;
                 },
@@ -66,13 +66,13 @@ var chiffer = {
                     sv: "Nummer",
                     en: ""
                 },
-                methode: function () {
+                methode: function() {
                     "use strict";
                     return chiffer.chiffers.number;
                 }
             },
             cesar: {
-                type: function () {
+                type: function() {
                     "use strict";
                     return chiffer.chiffers.alphaNumber;
                 },
@@ -80,7 +80,7 @@ var chiffer = {
                     sv: "Cesar chiffer",
                     en: ""
                 },
-                methode: function () {
+                methode: function() {
                     "use strict";
                     return chiffer.chiffers.cesar;
                 }
@@ -229,30 +229,30 @@ var chiffer = {
             }
         }
     },
-    updateList: function (list) {
+    updateList: function(list) {
         "use strict";
         // list.next();
     },
-    populate: function () {
-        $.each(chiffer.chiffers.methodes, function (key, value) {
+    populate: function() {
+        $.each(chiffer.chiffers.methodes, function(key, value) {
             $(".chiffer").html($(".chiffer").html() + '<option value="' + key + '">' + value.name.sv + '</option>');
         });
-        $(".chiffer").change(function () {
+        $(".chiffer").change(function() {
             var sort = this;
             $(sort).next().html("");
-            $.each(chiffer.chiffers.methodes[$(this).val()].type().chifferMethod, function (key, value) {
+            $.each(chiffer.chiffers.methodes[$(this).val()].type().chifferMethod, function(key, value) {
                 $(sort).next().html($(sort).next().html() + '<option value="' + key + '">' + value.name.sv + '</option>');
             });
         });
-        $(".chiffer").each(function () {
+        $(".chiffer").each(function() {
             var sort = this;
             $(sort).next().html("");
-            $.each(chiffer.chiffers.methodes[$(this).val()].type().chifferMethod, function (key, value) {
+            $.each(chiffer.chiffers.methodes[$(this).val()].type().chifferMethod, function(key, value) {
                 $(sort).next().html($(sort).next().html() + '<option value="' + key + '">' + value.name.sv + '</option>');
             });
         });
     },
-    convert: function (input, to, keytext) {
+    convert: function(input, to, keytext) {
         "use strict";
         var alphabet = jQuery.extend([], chiffer.chiffers.alphabet),
             imageCrypto = $.extend([], chiffer.chiffers.imageCrypto),
@@ -279,103 +279,103 @@ var chiffer = {
 
         alphabet = chiffer.remove(theChiffer.remove, alphabet);
         switch (type) {
-        case "lumberyard":
-            if (sorte !== undefined && sorte !== null) {
-                theKey = theChiffer.chifferMethod[sorte].serie;
-            } else {
-                theKey = theChiffer.chifferMethod.normal.serie;
-            }
-            // console.log(chiffer.chiffers.methodes[type].type());
-            // theChiffer = chiffer.chiffers.three;
-            imageCrypto = chiffer.remove(theChiffer.remove, imageCrypto);
-            text = chiffer.encrypt(text, alphabet, alphabet, theKey, false, true);
-            break;
-        case "scout":
-            if (sorte !== undefined && sorte !== null) {
-                theKey = theChiffer.chifferMethod[sorte].serie;
-            } else {
-                theKey = theChiffer.chifferMethod.normal.serie;
-            }
-            // theChiffer = chiffer.chiffers.alphaNumber;
-            // alphabet = chiffer.remove(theChiffer.remove, alphabet);
-            key = $.extend([], theChiffer.chifferMethod.normal.serie);
-            scoutCrypto = $.extend([], chiffer.chiffers.scoutCrypto);
-            text = chiffer.encryptToMatris(text, alphabet, scoutCrypto, theKey, true, false);
-            break;
-        case "matrise":
-            // theChiffer = chiffer.chiffers.alphaNumber;
-            // alphabet = chiffer.remove(theChiffer.remove, alphabet);
-            key = $.extend([], theChiffer.chifferMethod.normal.serie);
-            scoutCrypto = $.extend([], chiffer.chiffers.matrisCrypto);
-            text = chiffer.encryptToMatris(text, alphabet, methode, key);
-            break;
-        case "cesar":
-            // theChiffer = chiffer.chiffers.alphaNumber;
-            // alphabet = chiffer.remove(theChiffer.remove, alphabet);
-            //imageCrypto = chiffer.remove(theChiffer.remove, imageCrypto);
-            key = $.extend([], theChiffer.chifferMethod.normal.serie);
-            if (offset !== undefined && offset !== null) {
-                add = parseInt(offset, false);
-            } else if (sorte !== undefined && sorte !== null) {
-                //console.log(theChiffer.chifferMethod[sorte].serie);
-                add = parseInt(theChiffer.chifferMethod[sorte].serie, false);
-            } else {
-                add = 0;
-            }
-            alphabetCrypto = $.extend([], chiffer.chiffers.alphabet);
-            for (charactars in key) {
-                if (key.hasOwnProperty(charactars)) {
-                    if (key[charactars] + add < key.length) {
-                        key[charactars] = key[charactars] + add;
-                    } else {
-                        key[charactars] = key[charactars] - key.length + add;
+            case "lumberyard":
+                if (sorte !== undefined && sorte !== null) {
+                    theKey = theChiffer.chifferMethod[sorte].serie;
+                } else {
+                    theKey = theChiffer.chifferMethod.normal.serie;
+                }
+                // console.log(chiffer.chiffers.methodes[type].type());
+                // theChiffer = chiffer.chiffers.three;
+                imageCrypto = chiffer.remove(theChiffer.remove, imageCrypto);
+                text = chiffer.encrypt(text, alphabet, alphabet, theKey, false, true);
+                break;
+            case "scout":
+                if (sorte !== undefined && sorte !== null) {
+                    theKey = theChiffer.chifferMethod[sorte].serie;
+                } else {
+                    theKey = theChiffer.chifferMethod.normal.serie;
+                }
+                // theChiffer = chiffer.chiffers.alphaNumber;
+                // alphabet = chiffer.remove(theChiffer.remove, alphabet);
+                key = $.extend([], theChiffer.chifferMethod.normal.serie);
+                scoutCrypto = $.extend([], chiffer.chiffers.scoutCrypto);
+                text = chiffer.encryptToMatris(text, alphabet, scoutCrypto, theKey, true, false);
+                break;
+            case "matrise":
+                // theChiffer = chiffer.chiffers.alphaNumber;
+                // alphabet = chiffer.remove(theChiffer.remove, alphabet);
+                key = $.extend([], theChiffer.chifferMethod.normal.serie);
+                scoutCrypto = $.extend([], chiffer.chiffers.matrisCrypto);
+                text = chiffer.encryptToMatris(text, alphabet, methode, key);
+                break;
+            case "cesar":
+                // theChiffer = chiffer.chiffers.alphaNumber;
+                // alphabet = chiffer.remove(theChiffer.remove, alphabet);
+                //imageCrypto = chiffer.remove(theChiffer.remove, imageCrypto);
+                key = $.extend([], theChiffer.chifferMethod.normal.serie);
+                if (offset !== undefined && offset !== null) {
+                    add = parseInt(offset, false);
+                } else if (sorte !== undefined && sorte !== null) {
+                    //console.log(theChiffer.chifferMethod[sorte].serie);
+                    add = parseInt(theChiffer.chifferMethod[sorte].serie, false);
+                } else {
+                    add = 0;
+                }
+                alphabetCrypto = $.extend([], chiffer.chiffers.alphabet);
+                for (charactars in key) {
+                    if (key.hasOwnProperty(charactars)) {
+                        if (key[charactars] + add < key.length) {
+                            key[charactars] = key[charactars] + add;
+                        } else {
+                            key[charactars] = key[charactars] - key.length + add;
+                        }
                     }
                 }
-            }
-            text = chiffer.encrypt(text, alphabet, alphabetCrypto, key, false, true);
-            break;
-        case "number":
-            // theChiffer = chiffer.chiffers.alphaNumber;
-            // alphabet = chiffer.remove(theChiffer.remove, alphabet);
-            //imageCrypto = chiffer.remove(theChiffer.remove, imageCrypto);
-            key = $.extend([], theChiffer.chifferMethod.normal.serie);
-            if (sorte !== undefined && sorte !== null && theChiffer.chifferMethod[sorte] !== undefined) {
-                //console.log(theChiffer.chifferMethod[sorte].serie);
-                add = parseInt(theChiffer.chifferMethod[sorte].serie);
-            } else {
-                add = 0;
-            }
-            numberCrypto = $.extend([], chiffer.chiffers.numberCrypto);
-            for (charactars in key) {
-                if (key.hasOwnProperty(charactars)) {
-                    if (key[charactars] + add < key.length) {
-                        key[charactars] = key[charactars] + add;
-                    } else {
-                        key[charactars] = key[charactars] - key.length + add;
+                text = chiffer.encrypt(text, alphabet, alphabetCrypto, key, false, true);
+                break;
+            case "number":
+                // theChiffer = chiffer.chiffers.alphaNumber;
+                // alphabet = chiffer.remove(theChiffer.remove, alphabet);
+                //imageCrypto = chiffer.remove(theChiffer.remove, imageCrypto);
+                key = $.extend([], theChiffer.chifferMethod.normal.serie);
+                if (sorte !== undefined && sorte !== null && theChiffer.chifferMethod[sorte] !== undefined) {
+                    //console.log(theChiffer.chifferMethod[sorte].serie);
+                    add = parseInt(theChiffer.chifferMethod[sorte].serie);
+                } else {
+                    add = 0;
+                }
+                numberCrypto = $.extend([], chiffer.chiffers.numberCrypto);
+                for (charactars in key) {
+                    if (key.hasOwnProperty(charactars)) {
+                        if (key[charactars] + add < key.length) {
+                            key[charactars] = key[charactars] + add;
+                        } else {
+                            key[charactars] = key[charactars] - key.length + add;
+                        }
                     }
                 }
-            }
-            text = chiffer.encrypt(text, alphabet, numberCrypto, key, false, true);
-            break;
-        case "other":
-            textarray = text.split('');
-            i = 0;
-            newText = "";
-            switch (sorte) {
-            case "backward":
-                for (i in textarray) {
-                    newText += textarray[textarray.length - i - 1];
-                }
-                text = newText;
+                text = chiffer.encrypt(text, alphabet, numberCrypto, key, false, true);
                 break;
-            case "everyOther":
-                for (i in textarray) {
-                    newText += textarray[i] + chiffer.chiffers.alphabet[Math.floor(Math.random() * (28 - 1 + 1) + 1)];
+            case "other":
+                textarray = text.split('');
+                i = 0;
+                newText = "";
+                switch (sorte) {
+                    case "backward":
+                        for (i in textarray) {
+                            newText += textarray[textarray.length - i - 1];
+                        }
+                        text = newText;
+                        break;
+                    case "everyOther":
+                        for (i in textarray) {
+                            newText += textarray[i] + chiffer.chiffers.alphabet[Math.floor(Math.random() * (28 - 1 + 1) + 1)];
+                        }
+                        text = newText;
+                        break;
                 }
-                text = newText;
                 break;
-            }
-            break;
         }
         if (keytext) {
             text += ' / <span class="start">' + keytext.val() + '</span>';
@@ -387,14 +387,14 @@ var chiffer = {
             $(to).addClass('key');
         }
     },
-    remove: function (removebul, alphabet) {
+    remove: function(removebul, alphabet) {
         "use strict";
-        $.each(removebul, function () {
+        $.each(removebul, function() {
             alphabet.splice(removebul, 1);
         });
         return alphabet;
     },
-    encrypt: function (text, alphabet, imageCrypto, key, image, alphabetic) {
+    encrypt: function(text, alphabet, imageCrypto, key, image, alphabetic) {
         "use strict";
         var i, returner;
         for (i in alphabet) {
@@ -409,7 +409,7 @@ var chiffer = {
         }
         return returner;
     },
-    encryptToMatris: function (text, alphabet, imageCrypto, key) {
+    encryptToMatris: function(text, alphabet, imageCrypto, key) {
         "use strict";
         var i,
             test;
@@ -433,7 +433,7 @@ var chiffer = {
         text = text.replace(", ", " ", "gi");
         return text;
     },
-    encryptToImage: function (text, alphabet, imageCrypto, key) {
+    encryptToImage: function(text, alphabet, imageCrypto, key) {
         "use strict";
         var i;
         for (i in imageCrypto) {
@@ -443,7 +443,7 @@ var chiffer = {
         }
         return text;
     },
-    encryptToAlphabetic: function (text, alphabet, crypto, key) {
+    encryptToAlphabetic: function(text, alphabet, crypto, key) {
         "use strict";
         var i;
         for (i in crypto) {

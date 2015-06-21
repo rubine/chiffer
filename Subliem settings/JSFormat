@@ -10,6 +10,7 @@
 	"eval_code": true,
 	"unescape_strings": false,
 	"break_chained_methods": false,
+	"space_after_anon_function": true,
 
 	// jsformat options
 	"format_on_save": false

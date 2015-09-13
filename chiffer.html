@@ -20,17 +20,19 @@
 			chiffer.convert($(this), '[data-output="'+$(this).data('input')+'"]');
 		});
 
-		$('.chiffer').each( function(){
+		$('.js-chiffer-select').each( function(){
 			$(this).change(function() {
 			chiffer.convert('[data-input="'+$(this).data('chiffer')+'"]', '[data-output="'+$(this).data('chiffer')+'"]');
 			chiffer.convert('[data-input="'+$(this).data('chiffer')+'"]', '[data-key="'+$(this).data('chiffer')+'"]', '.key-input');
 		});
+
+
+
 			$(this).keyup(function() {
 			chiffer.convert('[data-input="'+$(this).data('chiffer')+'"]', '[data-output="'+$(this).data('chiffer')+'"] .key-input');
 		});
 		});
 
-		
 		$('.methode').each( function(){
 			$(this).keyup(function() {
 			chiffer.convert($(this), '[data-output="'+$(this).data('method')+'"]');
@@ -58,10 +60,10 @@
             <% _.times( 10, function( index ){ %>
 			<li>
 				<input class="chiffer-input" data-input="<%- (index + 1) %>" type=""></input>
-				<select name="Ciffer" data-chiffer="<%- (index + 1) %>" class="chiffer" id="chiffer<%- (index + 1) %>">
+				<select name="Ciffer" data-chiffer="<%- (index + 1) %>" class="chiffer js-chiffer-select" id="chiffer<%- (index + 1) %>">
 					
 				</select>
-				<select name="tre" class="methode" data-methode="<%- (index + 1) %>">
+				<select name="tre" data-chiffer="<%- (index + 1) %>" class="methode js-chiffer-select" data-methode="<%- (index + 1) %>">
 					
 				</select>
 				<input class="offset">

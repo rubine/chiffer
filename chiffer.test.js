@@ -2,35 +2,32 @@ var chiffer = {
     chiffers: {
         methodes: {
             scout: {
-                type: function() {
-                    "use strict";
+                type: function () {
                     return chiffer.chiffers.five;
                 },
                 name: {
-                    sv: "SCOUTscout",
-                    en: ""
+                    sv: 'SCOUTsout',
+                    en: ''
                 },
-                methode: function() {
-                    "use strict";
+                methode: function () {
                     return chiffer.chiffers.scoutCrypto;
                 }
             },
             other: {
-                type: function() {
-                    "use strict";
+                type: function () {
                     return chiffer.chiffers.other;
                 },
                 name: {
-                    sv: "Andra",
-                    en: ""
+                    sv: 'Andra',
+                    en: ''
                 },
-                methode: function() {
+                methode: function () {
                     "use strict";
                     return chiffer.chiffers.alphabet;
                 }
             },
             lumberyard: {
-                type: function() {
+                type: function () {
                     "use strict";
                     return chiffer.chiffers.three;
                 },
@@ -38,13 +35,13 @@ var chiffer = {
                     sv: "Brädgård",
                     en: ""
                 },
-                methode: function() {
+                methode: function () {
                     "use strict";
                     return chiffer.chiffers.imageCrypto;
                 }
             },
             matrise: {
-                type: function() {
+                type: function () {
                     "use strict";
                     return chiffer.chiffers.five;
                 },
@@ -52,13 +49,13 @@ var chiffer = {
                     sv: "Matris",
                     en: ""
                 },
-                methode: function() {
+                methode: function () {
                     "use strict";
                     return chiffer.chiffers.matrisCrypto;
                 }
             },
             number: {
-                type: function() {
+                type: function () {
                     "use strict";
                     return chiffer.chiffers.alphaNumber;
                 },
@@ -66,13 +63,13 @@ var chiffer = {
                     sv: "Nummer",
                     en: ""
                 },
-                methode: function() {
+                methode: function () {
                     "use strict";
                     return chiffer.chiffers.number;
                 }
             },
             cesar: {
-                type: function() {
+                type: function () {
                     "use strict";
                     return chiffer.chiffers.alphaNumber;
                 },
@@ -80,7 +77,7 @@ var chiffer = {
                     sv: "Cesar chiffer",
                     en: ""
                 },
-                methode: function() {
+                methode: function () {
                     "use strict";
                     return chiffer.chiffers.cesar;
                 }
@@ -229,30 +226,30 @@ var chiffer = {
             }
         }
     },
-    updateList: function(list) {
+    updateList: function (list) {
         "use strict";
         // list.next();
     },
-    populate: function() {
-        $.each(chiffer.chiffers.methodes, function(key, value) {
+    populate: function () {
+        $.each(chiffer.chiffers.methodes, function (key, value) {
             $(".chiffer").html($(".chiffer").html() + '<option value="' + key + '">' + value.name.sv + '</option>');
         });
-        $(".chiffer").change(function() {
+        $(".chiffer").change(function () {
             var sort = this;
             $(sort).next().html("");
-            $.each(chiffer.chiffers.methodes[$(this).val()].type().chifferMethod, function(key, value) {
+            $.each(chiffer.chiffers.methodes[$(this).val()].type().chifferMethod, function (key, value) {
                 $(sort).next().html($(sort).next().html() + '<option value="' + key + '">' + value.name.sv + '</option>');
             });
         });
-        $(".chiffer").each(function() {
+        $(".chiffer").each(function () {
             var sort = this;
             $(sort).next().html("");
-            $.each(chiffer.chiffers.methodes[$(this).val()].type().chifferMethod, function(key, value) {
+            $.each(chiffer.chiffers.methodes[$(this).val()].type().chifferMethod, function (key, value) {
                 $(sort).next().html($(sort).next().html() + '<option value="' + key + '">' + value.name.sv + '</option>');
             });
         });
     },
-    convert: function(input, to, keytext) {
+    convert: function (input, to, keytext) {
         "use strict";
         var alphabet = jQuery.extend([], chiffer.chiffers.alphabet),
             imageCrypto = $.extend([], chiffer.chiffers.imageCrypto),
@@ -387,14 +384,14 @@ var chiffer = {
             $(to).addClass('key');
         }
     },
-    remove: function(removebul, alphabet) {
+    remove: function (removebul, alphabet) {
         "use strict";
-        $.each(removebul, function() {
+        $.each(removebul, function () {
             alphabet.splice(removebul, 1);
         });
         return alphabet;
     },
-    encrypt: function(text, alphabet, imageCrypto, key, image, alphabetic) {
+    encrypt: function (text, alphabet, imageCrypto, key, image, alphabetic) {
         "use strict";
         var i, returner;
         for (i in alphabet) {
@@ -409,7 +406,7 @@ var chiffer = {
         }
         return returner;
     },
-    encryptToMatris: function(text, alphabet, imageCrypto, key) {
+    encryptToMatris: function (text, alphabet, imageCrypto, key) {
         "use strict";
         var i,
             test;
@@ -433,7 +430,7 @@ var chiffer = {
         text = text.replace(", ", " ", "gi");
         return text;
     },
-    encryptToImage: function(text, alphabet, imageCrypto, key) {
+    encryptToImage: function (text, alphabet, imageCrypto, key) {
         "use strict";
         var i;
         for (i in imageCrypto) {
@@ -443,7 +440,7 @@ var chiffer = {
         }
         return text;
     },
-    encryptToAlphabetic: function(text, alphabet, crypto, key) {
+    encryptToAlphabetic: function (text, alphabet, crypto, key) {
         "use strict";
         var i;
         for (i in crypto) {

@@ -1,102 +1,108 @@
 <html>
 <header>
 
-<meta charset="UTF-8">
+	<meta charset="UTF-8">
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script src="http://code.jquery.com/jquery-migrate-1.1.0.min.js"></script>
 	<script src="jquery.js"></script>
 	<script src="chiffer.test.js"></script>
 
 	<script type="text/javascript">
-	$(document).ready(function() {
+		$(document).ready(function() {
+			var times = 0;
+			chiffer.populate();
 
-		chiffer.populate();
-
-		$('.chiffer-input').each( function(){
-			$(this).keyup(function() {
-				chiffer.convert($(this), '[data-output="'+$(this).data('input')+'"]');
-				chiffer.convert($(this), '[data-key="'+$(this).data('input')+'"]', $('.key-input'));
+			$('.chiffer-input').each(function() {
+				$(this).keyup(function() {
+					chiffer.convert($(this), '[data-output="' + $(this).data('input') + '"]');
+					chiffer.convert($(this), '[data-key="' + $(this).data('input') + '"]', $('.key-input'));
+				});
+				chiffer.convert($(this), '[data-output="' + $(this).data('input') + '"]');
 			});
-			chiffer.convert($(this), '[data-output="'+$(this).data('input')+'"]');
+
+			$('.js-chiffer-select').each(function() {
+				$(this).change(function() {
+					chiffer.convert('[data-input="' + $(this).data('chiffer') + '"]', '[data-output="' + $(this).data('chiffer') + '"]');
+					chiffer.convert('[data-input="' + $(this).data('chiffer') + '"]', '[data-key="' + $(this).data('chiffer') + '"]', '.key-input');
+				});
+
+				$(this).keyup(function() {
+					chiffer.convert('[data-input="' + $(this).data('chiffer') + '"]', '[data-output="' + $(this).data('chiffer') + '"] .key-input');
+				});
+			});
+
+			$('.methode').each(function() {
+				$(this).keyup(function() {
+					chiffer.convert($(this), '[data-output="' + $(this).data('method') + '"]');
+				});
+			});
+
 		});
+	</script>
 
-		$('.js-chiffer-select').each( function(){
-			$(this).change(function() {
-			chiffer.convert('[data-input="'+$(this).data('chiffer')+'"]', '[data-output="'+$(this).data('chiffer')+'"]');
-			chiffer.convert('[data-input="'+$(this).data('chiffer')+'"]', '[data-key="'+$(this).data('chiffer')+'"]', '.key-input');
-		});
-
-
-
-			$(this).keyup(function() {
-			chiffer.convert('[data-input="'+$(this).data('chiffer')+'"]', '[data-output="'+$(this).data('chiffer')+'"] .key-input');
-		});
-		});
-
-		$('.methode').each( function(){
-			$(this).keyup(function() {
-			chiffer.convert($(this), '[data-output="'+$(this).data('method')+'"]');
-		});
-		});
-
-	});
-</script>
-
-
-
-
-<link rel="stylesheet" href="chiffer.css">
-<link rel="stylesheet" href="print-chiffer.css">
+	<link rel="stylesheet" href="chiffer.css">
+	<link rel="stylesheet" href="print-chiffer.css">
 </header>
+
 <body>
-	    <h1>
-        Chiffer
-    </h1>
-    	<form action="" class="main-key hide-when-print">
-			<label>Nyckel:<input class="key-input" type=""></input></label>
+	<h1>
+		Chiffer
+	</h1>
+	<form action="" class="main-key hide-when-print">
+		<label>Nyckel:
+			<input class="key-input" type=""></input>
+		</label>
+		<label>Antal:
+			<input class="times" type=""></input>
+		</label>
 	</form>
 	<script type="text/template" class="template">
-	<ol class="hide-when-print">
-            <% _.times( 10, function( index ){ %>
-			<li>
-				<input class="chiffer-input" data-input="<%- (index + 1) %>" type=""></input>
-				<select name="Ciffer" data-chiffer="<%- (index + 1) %>" class="chiffer js-chiffer-select" id="chiffer<%- (index + 1) %>">
-					
-				</select>
-				<select name="tre" data-chiffer="<%- (index + 1) %>" class="methode js-chiffer-select" data-methode="<%- (index + 1) %>">
-					
-				</select>
-				<input class="offset">
-			</li>
-            <% }); %>
+
+		<ol class="hide-when-print">
+			<% _.times( times, function( index ){ %>
+				<li>
+					<input class="chiffer-input" data-input="<%- (index + 1) %>" type=""></input>
+					<select name="Ciffer" data-chiffer="<%- (index + 1) %>" class="chiffer js-chiffer-select" id="chiffer<%- (index + 1) %>">
+
+					</select>
+					<select name="tre" data-chiffer="<%- (index + 1) %>" class="methode js-chiffer-select" data-methode="<%- (index + 1) %>">
+
+					</select>
+					<input class="offset">
+				</li>
+				<% }); %>
 		</ol>
 
-	<div>
-		<ol>
-            <% _.times( 10, function( index ){ %>
-			<li id=""><span data-output="<%- (index + 1) %>"></span><span class="key" data-key="<%- (index + 1) %>"></span></li>
-            <% }); %>
-		</ol>
-	</div>
-</script>
+		<div>
+			<ol>
+				<% _.times( times, function( index ){ %>
+					<li id="">
+						<span data-output="<%- (index + 1) %>"></span>
+						<span class="key" data-key="<%- (index + 1) %>"></span>
+					</li>
+					<% }); %>
+			</ol>
+		</div>
+	</script>
 
 
 	<script src="underscore-min.js"></script>
-   <script type="text/javascript">
+	<script type="text/javascript">
+		// $('.times').keyup(function() {
+		var times = 10;
+		var template = _.template(
+			$("script.template").html()
+		);
 
-        var template = _.template(
-            $( "script.template" ).html()
-        );
+		var templateData = {};
 
-        var templateData = { };
-
-        $( '.main-key' ).after(
-            template( templateData )
-        );
-
-
-    </script>
+		$('.main-key').after(
+			template(templateData)
+		);
+		// });
+	</script>
 
 
 </body>
+
 </html>

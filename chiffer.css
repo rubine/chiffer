@@ -1,32 +1,26 @@
-div ol li 
-{
-    font-size: 24px;
-    margin-bottom: 24px;
+div ol li {
+  font-size: 24px;
+  margin-bottom: 24px;
 }
-li div
-{
-    background: url('hars.png');
-    width: 20px;
-    height: 20px;   
-    display: inline-block;
-    margin-right: 2px;
-    background-position: -560px  0;
+li div {
+  background: url('hars.png');
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin-right: 2px;
+  background-position: -560px 0;
 }
-.key
-{
-    float: right;
+.key {
+  float: right;
 }
-.key .start
-{
-    font-family: serif;
+.key .start {
+  font-family: serif;
 }
-
-    @font-face {
-    font-family: icomoon;
-    src: url('hars/hars.ttf');
+@font-face {
+  font-family: icomoon;
+  src: url('hars/hars.ttf');
 }
-.lumberyard
-{
-font-family: icomoon;
-font-size: 27px;
+.lumberyard {
+  font-family: icomoon;
+  font-size: 27px;
 }
